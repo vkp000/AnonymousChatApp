@@ -26,7 +26,7 @@ export async function POST(request: Request){
             if(existingUserByEmail.isVerified){
                 return Response.json({
                     success: false,
-                    message: "User already exist with this email"
+                    m5essage: "User already exist with this email"
                 }, {status: 500})
             }else{
                 const hasedPassword = await bcrypt.hash(password, 10)
@@ -72,6 +72,7 @@ export async function POST(request: Request){
             success: true,
             message: "User registered successfully. please verify your email"
         }, {status: 201})
+        
     } catch (error) {
         console.log('Error registering user', error);
         return Response.json({
