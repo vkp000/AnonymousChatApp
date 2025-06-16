@@ -26,6 +26,7 @@ import { Loader2 } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { signUpSchema } from "@/schemas/signUpSchema";
 import { signInSchema } from "@/schemas/signInSchema";
+import { signIn } from "next-auth/react";
 
 export default function SignUpForm() {
   const [username, setUsername] = useState("");
@@ -47,7 +48,7 @@ export default function SignUpForm() {
   });
 
 
-  const onSubmit = async (data: z.infer<typeof signINSchema>) => {
+  const onSubmit = async (data: z.infer<typeof signInSchema>) => {
     const result = await signIn('credentials', {
         redirect: false,
         identifier: data.identifier,
@@ -113,9 +114,9 @@ export default function SignUpForm() {
         </Form>
         <div className="text-center mt-4">
           <p>
-            Already a member?{" "}
-            <Link href="/sign-in" className="text-blue-600 hover:text-blue-800">
-              Sign in
+            Don't have an account?{" "}
+            <Link href="/sign-up" className="text-blue-600 hover:text-blue-800">
+              Sign up
             </Link>
           </p>
         </div>
