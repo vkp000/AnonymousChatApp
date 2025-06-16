@@ -3,11 +3,16 @@ import { authOptions } from "../auth/[...nextauth]/options";
 import dbConnect from "@/lib/dbConnect";
 import UserModel from "@/model/User";
 import { User } from "next-auth";
+import mongoose from "mongoose";
+
+
+
+
 
 export async function GET(request:Request) {
     await dbConnect()
      const session = await getServerSession(authOptions)
-     const _user: User = session?.user as User
+     const user: User = session?.user as User
      if(!session || !session.user){
         return Response.json(
             {
